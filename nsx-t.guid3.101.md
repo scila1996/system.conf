@@ -175,7 +175,7 @@ https://docs.broadcom.com/doc/12395116
 
 ## N-VDS
 
-Trong NSX-T thì khi các Node join vào cụm thì sẽ được cài đặt một loại switch ảo gọi N-VDS, giống với việc khi join vào vCenter thì vCenter sẽ đẩy VDS xuống các Host. N-VDS trong NSX-T là một loại switch tương tự như VDS nhưng được thiết kế với các chức năng tương đương trong NSX-T, GENEVE Overlay là một ví dụ.
+Trong NSX-T thì khi các Node join vào cụm thì sẽ được cài đặt một loại switch ảo gọi là N-VDS, giống với việc khi join vào vCenter thì vCenter sẽ đẩy VDS xuống các Host. N-VDS trong NSX-T là một loại switch tương tự như VDS nhưng được thiết kế với các chức năng tương đương trong NSX-T, GENEVE Overlay là một ví dụ.
 
 Tuy nhiên từ các bản trước 3.0. N-VDS được cài riêng biệt với VDS, nghĩa là N-VDS được quản lý bởi NSX-T Manager và VDS vẫn thuộc quản lý của vCenter. Từ 3.0 trở đi thì VMware đã thiết kế để tận dụng VDS bằng cách thêm một tùy chọn là cài N-VDS trên VDS, tức là N-VDS vẫn được cài riêng nhưng sẽ build-on-top của VDS. Tận dụng được VDS, về bản chất chúng vẫn riêng biệt với nhau, nhưng cấu hình lại giúp cho chúng liên quan với nhau. Thiết kế này giúp đơn giản hóa việc cấu hình NSX-T trên VMware vSphere hơn rất nhiều.
 
