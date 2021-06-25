@@ -80,7 +80,7 @@ Dựa vào khái niệm cơ bản của DataCenter, ta có 2 loại traffic là
 
 ![image](https://user-images.githubusercontent.com/17109300/123466489-935ffd00-d619-11eb-9e02-cf924a4e58c9.png)
 
-Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gateway, với 2 loại gateway này ta sẽ có mô hình routing giữa Cluster với hệ thống bên ngoài. Các gateway hoạt động giữa vào các Edge Node, về cơ bản nó giống như một thiết bị Layer 3 như Switch Layer 3 có khả năng Routing, nhưng Gateway xong NSX-T là SDN nên nó định tuyến được rất nhiều giao thức.
+Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gateway, với 2 loại gateway này ta sẽ có mô hình routing giữa Cluster với hệ thống bên ngoài. Các gateway hoạt động giữa vào các Edge Node, về cơ bản nó giống như một thiết bị Layer 3 như Switch Layer 3 có khả năng Routing, nhưng vì Gateway trong NSX-T là SDN nên nó hỗ trợ định tuyến được rất nhiều giao thức.
 
 1. Single Tier Routing
 
