@@ -118,7 +118,7 @@ Các VM ở các node thuộc zone nào sẽ chỉ nhìn thấy PortGroup của 
 Có 2 loại Transport Zone. Overlay và VLAN
 
 - `Overlay`: sẽ dùng cho kết nối nội bộ bên trong giữa các node, NSX-T sẽ sử dụng giao thức GENEVE.
-- `VLAN`: Sử dụng cho Underlay để kết nối thẳng với kết nối VLAN ngoài Host. Loại này thường sử dụng dùng kết nối North-South từ Uplin của NSX-T Edge tới hạ tầng vật lý.
+- `VLAN`: Sử dụng cho Underlay để kết nối thẳng với kết nối VLAN ngoài Host. Loại này thường sử dụng dùng kết nối North-South từ Uplink của NSX-T Edge tới hạ tầng vật lý.
 
 Thuộc tính của Transport Zone
 
