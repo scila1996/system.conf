@@ -13,7 +13,7 @@ Thuật ngữ sử dụng trong DataCenter, các SDN phát triển dựa vào h�
 
 Leaf Switch cung cấp các kết nối tới các máy chủ, Firewall, Router hoặc các thiết bị cân bằng tải. Các Leaf switch được kết nối tới tất cả Spine tạo thành mô hình Full-mesh nhưng không kết nối với nhau (Leaf-Leaf) trừ khi sử dụng các công nghệ HA như vPC, Stackwise, IRF.
 
-Spine Switch được sử dụng để kết nối với tất cả Leaf switch. Các Spine switch cũng không kết nối với các Spine switch khác để tạo thành mô hình có cùng bước nhảy giữa các máy chủ. Điều này mang lại độ trễ có thể dự đoán và băng thông cao giữa các máy chủ. Liên kết giữa Leaf và Spine có thể là liên kết Layer 2 hoặc Layer 3 sử dụng các giao thức định tuyến IGP.
+Spine Switch được sử dụng để kết nối với tất cả Leaf switch. Các Spine switch cũng không kết nối với các Spine switch khác để tạo thành mô hình có cùng bước nhảy giữa các máy chủ. Điều này mang lại độ trễ có thể dự đoán và băng thông cao giữa các máy chủ. Liên kết giữa Leaf và Spine có thể là liên kết Layer 2 hoặc Layer 3 sử dụng các giao thức định tuyến như iBGP.
 
 ## Thiết kế hạ tầng Network
 
