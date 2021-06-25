@@ -174,7 +174,7 @@ Vậy điều đó có nghĩa là các thiết bị có hỗ trợ Hardware Offl
 - `PowerEdge R750`
   - `Interface`: **Broadcom NetXtreme E-Series Quad-port 25Gb OCP 3.0 Ethernet Adapter**
 
-Đây là một trong server mới với card hỗ trợ Hardward Offload VXLAN / NVGRE và VXLAN
+Đây là một trong server mới với card hỗ trợ Hardward Offload VXLAN / NVGRE và GENEVE
 
 https://docs.broadcom.com/doc/12395116
 
