@@ -65,6 +65,8 @@ Dải mạng link-local phiên bản cho IPv4. Phía dưới nền network, đ�
 - `NTP`: *169.254.169.123*
 - `DNS`: *169.254.169.253*
 
+Trong NSX-T chúng được sử dụng làm Transit Link giữa traffic DR/SR trong cùng một Gateway
+
 ## Routing Architecture
 
 Trong NSX-T có 2 loại Gateway là Tier-0 (north-south traffic) và Tier-1 (east-west traffic).
