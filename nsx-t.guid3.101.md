@@ -164,7 +164,7 @@ Gói tin của VXLAN bên dưới
 
 ![image](https://user-images.githubusercontent.com/17109300/123466661-cacea980-d619-11eb-8ce4-ad0630fbcd9f.png)
 
-Vậy điều đó có nghĩa là các thiết bị có hỗ trợ Hardware Offload của các giao thức trên sẽ có performance tốt hơn. Những thiết bị không có Hardware Offload thì vẫn có thể dùng GENEVE để giao tiếp và gần như là một giao thức phiên dịch đứng ở giữa cho các thao thức trên
+Vậy điều đó có nghĩa là các thiết bị có hỗ trợ Hardware Offload của các giao thức trên sẽ có performance tốt hơn. Những thiết bị không có Hardware Offload thì vẫn có thể dùng GENEVE để giao tiếp và gần như là một giao thức phiên dịch đứng ở giữa cho các giao thức trên
 
 - `PowerEdge R750`
   - `Interface`: **Broadcom NetXtreme E-Series Quad-port 25Gb OCP 3.0 Ethernet Adapter**
