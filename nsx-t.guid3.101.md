@@ -84,13 +84,14 @@ Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gat
 
 1. Single Tier Routing
 
-   * Chỉ sử dụng Tier-0 gateway, gateway này sẽ kết nối tất cả các VM trong Cluster, Tier-0 có khả năng kết nối với Uplink đi ra ngoài Cluster. Mô hình này rất đơn giản, một gateway dùng cho tất cả các VM. Các VM kết nối tới Gateway khác nhau hoặc không cùng Gateway này thì không thể nào giao tiếp được với nhau, phù hợp với hệ thống kiểu Multi-Tenant hoặc muốn phân chia Network mức độ cao giữa các VM.
+   * Chỉ sử dụng Tier-0 gateway, gateway này sẽ kết nối tất cả các VM trong Cluster, Tier-0 có khả năng kết nối với Uplink đi ra ngoài Cluster. Mô hình này rất đơn giản, một gateway dùng cho tất cả các VM.
    
-   ![image](https://user-images.githubusercontent.com/17109300/123466550-a96dbd80-d619-11eb-8144-d59490baa3af.png)
+   ![image](https://user-images.githubusercontent.com/17109300/123472148-fd2fd500-d620-11eb-9fe9-7bddd0140338.png)
 
 2. Multi Tier Routing
 
    * Việc chỉ sử dụng Tier-0 thì tất cả các VM đều có khả năng đi được lưu lượng ra ngoài Cluster, nhưng nếu ta chỉ có các VM mà chỉ giao tiếp nội bộ bên trong Cluster mà không muốn cho ra ngoài thì sao ? Tier-0 vẫn làm được bằng cách không NAT dải đó ra ngoài qua Uplink là được, tuy nhiên với concepts chuẩn của việc sinh ra Tier-0 và Tier-1, muốn độc lập hoàn toàn về mặt secure, ta sẽ có 1 loại gateway gọi là Tier-1. Loại gateway này không được cấu hình Uplink ra ngoài và traffic sẽ chỉ nội bộ trong Cluster, chúng có thể có khác vùng mạng nhưng vẫn Routing được chỉ bên trong với nhau. Tier-1 tuy là gateway nội bộ nhưng vẫn có trường hợp cần cho các VM nối vào Tier-1 được đi ra ngoài Cluster. Và ta sẽ cấu hình thêm Tier-1 nối tới Tier-0 qua CGNAT. Đây là một kỹ thuật NAT giữa các Router trong ISP (nhà cung cấp dịch vụ mạng), được ứng dụng trong NSX-T.
+   *  Các VM kết nối tới Gateway khác nhau hoặc không cùng Gateway này thì không thể nào giao tiếp được với nhau, phù hợp với hệ thống kiểu Multi-Tenant hoặc muốn phân chia Network mức độ cao giữa các VM.
    
    ![image](https://user-images.githubusercontent.com/17109300/123466582-b4285280-d619-11eb-9e2b-6b2e77803030.png)
   
