@@ -48,6 +48,8 @@ Trong năm 2012, IANA đã phân bổ 4 triệu địa chỉ 100.64.0.0/10 để
 
 Công nghệ NAT được sử dụng trong ISP
 
+https://datatracker.ietf.org/doc/html/rfc6598
+
 Là dải địa chỉ mạng private giống như RFC1918 nhưng được dành riêng cho việc NAT giữa các nhà cung cấp Internet. Trên Internet, việc NAT không giống như ở dưới hạ tầng local, ISP không sử dụng các dải mạng Private RFC1918. họ dùng dải mạng dành riêng chỉ cho việc NAT giữa các thiết bị NAT, các thiết bị này phải hỗ trợ CGN. Dải mạng này không được quảng bá hoặc route ra ngoài Internet và cũng không dùng được trong Internal, nó chỉ dùng cho việc NAT giữa các Router trong và ngoài mạng
 
 Dải địa chỉ này sẽ được ngầm sử dụng trong việc giao tiếp giữa Gateway TIER-0 và TIER-1 trong NSX-T
