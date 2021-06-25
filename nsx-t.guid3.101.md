@@ -84,7 +84,7 @@ Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gat
 
 1. Single Tier Routing
 
-   * Chỉ sử dụng Tier-0 gateway, gateway này sẽ kết nối tất cả các VM trong Cluster, Tier-0 có khả năng kết nối với Uplink đi ra ngoài Cluster. Mô hình này rất đơn giản, một gateway dùng cho tất cả các VM.
+   * Chỉ sử dụng Tier-0 gateway, gateway này sẽ kết nối tất cả các VM trong Cluster, Tier-0 có khả năng kết nối với Uplink đi ra ngoài Cluster. Mô hình này rất đơn giản, một gateway dùng cho tất cả các VM. Các VM ở 2 Gateway khác nhau hoặc không nằm cùng Gateway này thì không thể nào giao tiếp được với nhau, phù hợp với hệ thống kiểu Multi-Tenant hoặc muốn phân chia Network mức độ cao giữa các VM.
    
    ![image](https://user-images.githubusercontent.com/17109300/123466550-a96dbd80-d619-11eb-8144-d59490baa3af.png)
 
