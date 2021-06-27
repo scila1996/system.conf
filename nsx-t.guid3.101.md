@@ -204,7 +204,11 @@ Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đề
 |-----------------------------------------------------------------------------
 ```
 
-Trên NSX thì N-VDS sẽ tạo ra logical switch, .... Có thể hiểu từ góc nhìn của VDS và Port-Group thì Logical Switch sẽ có ý nghĩa rộng hơn Port-Group, thứ nhất nó là Switch dạng Logical, thực chất thì nó là Port-Group có thể cấu hình được nhiều Policy hơn từ N-VDS, việc tạo ra một LS
+Trên NSX thì N-VDS sẽ tạo ra logical switch, trước đây NSX-V gọi tên là Logical Switch, nhưng NSX-T gọi nó là Segments, có lẽ việc này để tránh bị hiểu nhầm là sao đã có N-VDS là Switch rồi thì tại sao lại có thêm một lớp Switch nữa ? Thực ra đây không phải là Switch ảo nằm trong N-VDS, nó là một cấu hình được phân tách gọi là Domain giống như các thiết bị mạng khác. Từ bây giờ ta sẽ gọi nó là Segments, tuy nằm trong cùng một Switch là V-VDS và thậm chí có thể cùng Transport Zone, nhưng giữa các Segments là độc lập với nhau. Mỗi một Segments được tạo ra sẽ được tự động gán một VNI (Network ID) khác nhau. Điều này đầu tiên tách được luồng traffic riêng biệt giữa các VM giống như VLAN PortGroup trên VDS, tuy nhiên trong Segments của NSX-T, ta có thể cấu hình các chức năng của Layer 3 trên Segments này. Tóm lại thì N-VDS thực chất là V-Switch Layer 3 và Segments là một Domain mang cấu hình riêng biệt được Apply các chức năng của cả Layerr 2 và 3 từ N-VDS.
+
+Ngoài ra trong Segments này ta có thể cấu hình Guest VLAN trong Segments, các VM có thể tự tag nhóm VLAN của riêng chúng.
+
+Transport Zone ở trên giúp định nghĩa cách gói tin được truyền đi giữa các Host và Segments (LS) thì phải thuộc một Transport Zone, các Segments cùng Transport Zones thì 
 
 Điều này có nghĩa là VM sẽ vẫn truyền thẳng Layer 2, nhưng nếu có cấu hình Routing hoặc Firewall Policy thì switch này sẽ hỗ trợ forward gói tin ở Layer 2 theo rule của NSX.
 
