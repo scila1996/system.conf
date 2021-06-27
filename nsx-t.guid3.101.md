@@ -194,7 +194,17 @@ Một Segments được tạo tương đương với việc tạo PortGroup trê
 
 ![image](https://user-images.githubusercontent.com/17109300/123466735-e46ff100-d619-11eb-9da3-fb80f88f5d10.png)
 
-Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đều thông suốt với nhau, gói tin thuần túy luôn là Layer 2 và được truyền thẳng tới VM -> VDS -> VM luôn. Trên NSX thì tạo ra logical switch. Điều này có nghĩa là VM sẽ vẫn truyền thẳng Layer 2, nhưng nếu có cấu hình Routing hoặc Firewall Policy thì switch này sẽ hỗ trợ forward gói tin ở Layer 2 theo rule của NSX.
+Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đều thông suốt với nhau, gói tin thuần túy luôn là Layer 2 và được truyền thẳng tới VM -> VDS -> VM như sau.
+
+```
+|-----------------------------------------------------------------------------
+|      VM 1     |                  VDSwitch                  |      VM 2     |
+| (Port in VDS) | => | (Port Group) | => | (Port Group) | => | (Port in VDS) |
+|    (Host A)   |    |   (Host A)   |    |   (Host B)   |    |    (Host B)   |
+|-----------------------------------------------------------------------------
+```
+
+Trên NSX thì N-VDS sẽ tạo ra logical switch. Điều này có nghĩa là VM sẽ vẫn truyền thẳng Layer 2, nhưng nếu có cấu hình Routing hoặc Firewall Policy thì switch này sẽ hỗ trợ forward gói tin ở Layer 2 theo rule của NSX.
 
 Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, chúng có thể giao tiếp với nhau bằng cách cho cùng dải mạng và cùng ở Layer 2, nhưng nếu muốn đặt một Firewall rule ở giữa 2 VM trên cùng Segments (NSX-T PortGroup), thậm chí 2 VM này cùng nằm trên một ESXI node, rule vẫn sẽ được áp dụng cho 2 VM này
 
