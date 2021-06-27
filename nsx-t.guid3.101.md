@@ -1,4 +1,4 @@
-# Khái niệm và thuật ngữ cơ bản
+# NSX-T 3 Basic Guide-Line
 
 ## East-West traffic và North-South traffic
 
