@@ -204,7 +204,9 @@ Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đề
 |-----------------------------------------------------------------------------
 ```
 
-Trên NSX thì N-VDS sẽ tạo ra logical switch. Điều này có nghĩa là VM sẽ vẫn truyền thẳng Layer 2, nhưng nếu có cấu hình Routing hoặc Firewall Policy thì switch này sẽ hỗ trợ forward gói tin ở Layer 2 theo rule của NSX.
+Trên NSX thì N-VDS sẽ tạo ra logical switch, .... Có thể hiểu từ góc nhìn của VDS và Port-Group thì Logical Switch sẽ có ý nghĩa rộng hơn Port-Group, thứ nhất nó là Switch dạng Logical, thực chất thì nó là Port-Group có thể cấu hình được nhiều Policy hơn từ N-VDS, việc tạo ra một LS
+
+Điều này có nghĩa là VM sẽ vẫn truyền thẳng Layer 2, nhưng nếu có cấu hình Routing hoặc Firewall Policy thì switch này sẽ hỗ trợ forward gói tin ở Layer 2 theo rule của NSX.
 
 Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, chúng có thể giao tiếp với nhau bằng cách cho cùng dải mạng và cùng ở Layer 2, nhưng nếu muốn đặt một Firewall rule ở giữa 2 VM trên cùng Segments (NSX-T PortGroup), thậm chí 2 VM này cùng nằm trên một ESXI node, rule vẫn sẽ được áp dụng cho 2 VM này
 
