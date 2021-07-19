@@ -210,7 +210,7 @@ Trên NSX thì N-VDS sẽ tạo ra logical switch, trước đây NSX-V gọi t�
 
 Segments mang theo nhiều tính năng của Layer 3 nên cũng bảo mật hơn, gói tin vừa giao tiếp được ở Layer 2 nhờ vào việc mỗi Segments có một VNI riêng biệt, trong trường hợp VM có cùng Segments thì chúng vẫn có thể được Apply các Rule ở Layer 3.
 
-Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, chúng có thể giao tiếp với nhau bằng cách cho cùng dải mạng và cùng ở Layer 2, nhưng nếu muốn đặt một Firewall rule ở giữa 2 VM trên cùng Segments (NSX-T PortGroup), thậm chí 2 VM này cùng nằm trên một ESXI node, rule vẫn sẽ được áp dụng cho 2 VM này, đây là một tính năng phổ biến ở Layer 3.
+Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, chúng có thể giao tiếp với nhau khi nằm cùng một Segment, nhưng nếu muốn đặt một Firewall rule ở giữa các VM cùng một Segments (NSX-T PortGroup), thậm chí các VM này cùng nằm trên một ESXI node, rule vẫn sẽ được áp dụng cho 2 VM này, rule này có thể là Rule ở Layer 2, Rule ở Layer 3 theo IP, Rule ở Layer 7 theo giao thức ứng dụng. Các rule này thường là Stateful nên khá dễ dàng thiết lập và cài đặt.
 
 ![image](https://user-images.githubusercontent.com/17109300/123466755-ea65d200-d619-11eb-95be-37a33e74f5c7.png)
 
