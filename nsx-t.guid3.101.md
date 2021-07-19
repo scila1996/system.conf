@@ -140,7 +140,7 @@ Transport Zones thuộc loại Overlay và Uplink có tham số Transport VLAN s
 
 ## Overlay là gì
 
-Overlay network là 1 concepts nhằm mục đích đóng gói và vận chuyển gói tin từ Host này sang Host khác. Overlay Network mang thông tin của Network từ Node hay đi sang Node khác. Ví dụ
+Overlay network là 1 concepts nhằm mục đích đóng gói và vận chuyển gói tin từ Host này sang Host khác. Overlay Network mang thông tin của Network từ Node này đi sang Node khác. Ví dụ
 
 - Node: A
   - VM: A-0 (VNI 71000)
