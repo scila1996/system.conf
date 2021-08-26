@@ -99,6 +99,8 @@ Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gat
 
 Một transport zone được tạo ra sẽ thiết lập một vòng biên mạng. Chỉ có các Node, các Edge nằm trong cùng một zone mới có thể thấy được Logical Switch (segments) của nhau.
 
+![image](https://user-images.githubusercontent.com/17109300/131011618-ac80bc59-7114-4e3b-933d-cd43f9cb710f.png)
+
 Transport Zone được tạo ra nhằm mục đích để VM nhìn thấy nhau trong Transport Zone đó. Ví dụ ta có 3 Cluster
 
 - Cluster A
