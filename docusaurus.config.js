@@ -10,7 +10,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   baseUrl: '/system.conf/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'https://github.com/kubernetes/community/raw/master/icons/png/control_plane_components/labeled/api-128.png',
+  // favicon: 'https://github.com/kubernetes/community/raw/master/icons/png/control_plane_components/labeled/api-128.png',
   organizationName: 'scila1996', // Usually your GitHub org/user name.
   projectName: 'system.conf', // Usually your repo name.
 
@@ -46,7 +46,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         title: 'System.conf',
         logo: {
           alt: 'My config',
-          src: 'https://github.com/kubernetes/community/raw/master/icons/png/control_plane_components/labeled/api-128.png',
+          src: 'https://vmware.github.io/images/vmw_oss.svg',
         },
         items: [
           {
