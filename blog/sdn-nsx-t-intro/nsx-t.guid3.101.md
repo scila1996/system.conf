@@ -1,4 +1,9 @@
-# NSX-T 3 Basic Guide-Line
+---
+slug: sdn-nsx-t-introduction
+title: Tổng quan về SDN và VMware NSX-T
+authors: scila1996
+tags: [nsxt, nsx, vmware, sdn, network, virtualization]
+---
 
 ## East-West traffic và North-South traffic
 
@@ -9,9 +14,11 @@ Thuật ngữ sử dụng trong DataCenter, các SDN phát triển dựa vào h�
 
 ## Kiến trúc mạng Leaf-Spine
 
-![image](https://user-images.githubusercontent.com/17109300/123466380-788d8880-d619-11eb-8601-a10281e1a6da.png)
+![image](./images/leaf-spine-topo.png)
 
 Leaf Switch cung cấp các kết nối tới các máy chủ, Firewall, Router hoặc các thiết bị cân bằng tải. Các Leaf switch được kết nối tới tất cả Spine tạo thành mô hình Full-mesh nhưng không kết nối với nhau (Leaf-Leaf) trừ khi sử dụng các công nghệ HA như vPC, Stackwise, IRF.
+
+<!--truncate-->
 
 Spine Switch được sử dụng để kết nối với tất cả Leaf switch. Các Spine switch cũng không kết nối với các Spine switch khác để tạo thành mô hình có cùng bước nhảy giữa các máy chủ. Điều này mang lại độ trễ có thể dự đoán và băng thông cao giữa các máy chủ. Liên kết giữa Leaf và Spine có thể là liên kết Layer 2 hoặc Layer 3 sử dụng các giao thức định tuyến như iBGP.
 
@@ -40,11 +47,11 @@ Là các dải mạng đặc biệt và không được định tuyến trên In
 
 https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
 
-## Dải mạng 100.64.0.0/10
+### 100.64.0.0/10
 
-Trong năm 2012, IANA đã phân bổ 4 triệu địa chỉ 100.64.0.0/10 để sử dụng trong môi trường NAT với vai trò nhà cung cấp dịch vụ.
+Trong năm 2012, IANA đã phân bổ 4 triệu địa chỉ 100.64.0.0/10 để sử dụng trong môi trường NAT giữa các thiết bị định tuyến của nhà mạng với vai trò nhà cung cấp dịch vụ.
 
-###### Carrier-grade NAT (CGNAT)
+#### Carrier-grade NAT (CGNAT)
 
 Công nghệ NAT được sử dụng trong ISP
 
@@ -54,11 +61,11 @@ Là dải địa chỉ mạng private giống như RFC1918 nhưng được dành
 
 Dải địa chỉ này sẽ được ngầm sử dụng trong việc giao tiếp giữa Gateway TIER-0 và TIER-1 trong NSX-T
 
-## Dải mạng 224.0.0.0/4
+### 224.0.0.0/4
 
 Đây là dải mạng Multicast, sử dụng nhiều trong giao thức VRRP, cấu hình định tuyến OSPF hoặc IGMP
 
-## Dải mạng 169.254.0.0/16
+### 169.254.0.0/16
 
 Dải mạng link-local phiên bản cho IPv4. Phía dưới nền network, địa chỉ này có thể được sử dụng để cung cấp các dịch vụ như Time, DNS Server. Ví dụ như AWS EC2 sử dụng các địa chỉ sau
 
@@ -78,28 +85,28 @@ Dựa vào khái niệm cơ bản của DataCenter, ta có 2 loại traffic là
 
 Để Routing trong và ngoài hệ thống mạng, ta sẽ có 2 mô hình là Single-Tier và Multi-Tier khi cấu hình NSX-T.
 
-![image](https://user-images.githubusercontent.com/17109300/123466489-935ffd00-d619-11eb-9e02-cf924a4e58c9.png)
+![image](./images/nsxt-routing-architecture.png)
 
 Trong NSX-T có 2 loại gateway tương ứng là Tier-0 Gateway và Tier-1 Gateway, với 2 loại gateway này ta sẽ có mô hình routing giữa Cluster với hệ thống bên ngoài. Các gateway hoạt động giữa vào các Edge Node, về cơ bản nó giống như một thiết bị Layer 3 như Switch Layer 3 có khả năng Routing, nhưng vì Gateway trong NSX-T là SDN nên nó hỗ trợ định tuyến được rất nhiều giao thức.
 
-1. Single Tier Routing
+### Single Tier Routing
 
    * Chỉ sử dụng Tier-0 gateway, gateway này sẽ kết nối tất cả các VM trong Cluster, Tier-0 có khả năng kết nối với Uplink đi ra ngoài Cluster. Mô hình này rất đơn giản, một gateway dùng cho tất cả các VM.
    
-   ![image](https://user-images.githubusercontent.com/17109300/123472148-fd2fd500-d620-11eb-9fe9-7bddd0140338.png)
+   ![image](./images/nsxt-single-tier.png)
 
-2. Multi Tier Routing
+### Multi Tier Routing
 
    * Việc chỉ sử dụng Tier-0 thì tất cả các VM đều có khả năng đi được lưu lượng ra ngoài Cluster, nhưng nếu ta chỉ có các VM mà chỉ giao tiếp nội bộ bên trong Cluster mà không muốn cho ra ngoài thì sao ? Tier-0 vẫn làm được bằng cách không NAT dải đó ra ngoài qua Uplink là được, tuy nhiên với concepts chuẩn của việc sinh ra Tier-0 và Tier-1, muốn độc lập hoàn toàn về mặt secure, ta sẽ có 1 loại gateway gọi là Tier-1. Loại gateway này không được cấu hình Uplink ra ngoài và traffic sẽ chỉ nội bộ trong Cluster, chúng có thể có khác vùng mạng nhưng vẫn Routing được chỉ bên trong với nhau. Tier-1 tuy là gateway nội bộ nhưng vẫn có trường hợp cần cho các VM nối vào Tier-1 được đi ra ngoài Cluster. Và ta sẽ cấu hình thêm Tier-1 nối tới Tier-0 qua CGNAT. Đây là một kỹ thuật NAT giữa các Router trong ISP (nhà cung cấp dịch vụ mạng), được ứng dụng trong NSX-T.
    *  Các VM kết nối tới Gateway khác nhau hoặc không cùng Gateway này thì không thể nào giao tiếp được với nhau, phù hợp với hệ thống kiểu Multi-Tenant hoặc muốn phân chia Network mức độ cao giữa các VM.
    
-   ![image](https://user-images.githubusercontent.com/17109300/123466582-b4285280-d619-11eb-9e2b-6b2e77803030.png)
+   ![image](./images/nsxt-multi-tier.png)
   
 ## Transport Zones
 
 Một transport zone được tạo ra sẽ thiết lập một vòng biên mạng. Chỉ có các Node, các Edge nằm trong cùng một zone mới có thể thấy được Logical Switch (segments) của nhau.
 
-![image](https://user-images.githubusercontent.com/17109300/131011618-ac80bc59-7114-4e3b-933d-cd43f9cb710f.png)
+![image](./images/nsxt-transport-zone.png)
 
 Transport Zone được tạo ra nhằm mục đích để VM nhìn thấy nhau trong Transport Zone đó. Ví dụ ta có 3 Cluster
 
@@ -145,31 +152,31 @@ Transport Zones thuộc loại Overlay và Uplink có tham số Transport VLAN s
 Overlay network là 1 concepts nhằm mục đích đóng gói và vận chuyển gói tin từ Host này sang Host khác. Overlay Network mang thông tin của Network từ Node này đi sang Node khác. Ví dụ
 
 - Node: A
-  - VM: A-0 (VNI 71000)
-  - VM: A-1 (VNI 72000)
+  - VM: A-0 (VNI 71010)
+  - VM: A-1 (VNI 71020)
 - Node: B
-  - VM: B-0 (VNI 71000)
-  - VM: B-1 (VNI 72000)
+  - VM: B-0 (VNI 72010)
+  - VM: B-1 (VNI 72020)
 - Node: C
-  - VM: C-0 (VNI 71000)
-  - VM: C-1 (VNI 72000)
-  - VM: C-2 (VNI 72000)
+  - VM: C-0 (VNI 73010)
+  - VM: C-1 (VNI 73020)
+  - VM: C-2 (VNI 73030)
 
 Mỗi node sẽ chỉ có 1 port vật lý, khi một VM từ node này đi sang node khác, gói tin sẽ được đóng trong Overlay và gửi giữa các Node, về lý thuyết thì chúng là thông suốt với nhau, ví dụ các VM có VNI (ID của VXLAN) là 71000 có cùng dải với nhau sẽ nhìn thấy nhau 1 cách trong suốt, nhưng thực chất chúng đi trên một đường vật lý gọi là Overlay và được vận chuyển xuống dưới VM tương ứng
 
-![image](https://user-images.githubusercontent.com/17109300/123466624-bf7b7e00-d619-11eb-8138-70a8e67bee30.png)
+![image](./images/overlay.png)
 
-###### Giao thức GENEVE
+### Giao thức GENEVE
 
 Giao thức cung cấp tầng network Overlay. Đầu tiên hệ thống sẽ tạo ra các mạng Logical để cô lập tài nguyên Network, sử dụng giao thức Geneve, lớp này sẽ là trừu tượng giữa các Node, gói tin được đóng gói qua NIC. Geneve hoạt động bằng cách tạo Layer 2 Logical Network sau đó đóng gói qua UDP Layer 3 để gửi đi giữa các Hosts. Theo tài liệu của RFC, mục đích thiết kế ra GENEVE vì các vendor về network phát triển nhiều giao thức Overlay khác nhau, trong đó có VXLAN và NVGRE, chúng sử dụng format gần giống nhau với concepts chính là dùng 24 bit làm NI (network identifier)
 
-![image](https://user-images.githubusercontent.com/17109300/123466643-c5715f00-d619-11eb-8a90-0461c3915dfb.png)
+![image](./images/geneve.png)
 
 GENEVE sẽ thực hiện implement các giao thức này, về mặt thiết kế, nó tạo ra một giao thức mới là GENEVE giống với các giao thức trên. Nhưng trong Header sẽ chứa OPTIONAL, Nếu 2 thiết bị có hỗ trợ Offload gói tin trên thiết bị phần cứng (Hardward Offload) VXLAN hoặc NVGRE hoặc giao thức như bảng trên thì GENEVE có thể truyền packet theo đúng giao thức của Offload đó, ví dụ VXLAN, còn nếu thiết bị không hỗ trợ thì nó vẫn có thể truyền data và tự Offload không thông qua phần cứng
 
 Gói tin của VXLAN bên dưới
 
-![image](https://user-images.githubusercontent.com/17109300/123466661-cacea980-d619-11eb-8ce4-ad0630fbcd9f.png)
+![image](./images/geneve-vxlan-header.png)
 
 Vậy điều đó có nghĩa là các thiết bị có hỗ trợ Hardware Offload của các giao thức trên sẽ có performance tốt hơn. Những thiết bị không có Hardware Offload thì vẫn có thể dùng GENEVE để giao tiếp và gần như là một giao thức phiên dịch đứng ở giữa cho các giao thức trên
 
@@ -186,15 +193,23 @@ Trong NSX-T thì khi các Node join vào cụm thì sẽ được cài đặt m�
 
 Tuy nhiên từ các bản trước 3.0. N-VDS được cài riêng biệt với VDS, nghĩa là N-VDS được quản lý bởi NSX-T Manager và VDS vẫn thuộc quản lý của vCenter. Từ 3.0 trở đi thì VMware đã thiết kế để tận dụng VDS bằng cách thêm một tùy chọn là cài N-VDS trên VDS, tức là N-VDS vẫn được cài riêng nhưng sẽ build-on-top của VDS. Tận dụng được VDS, về bản chất chúng vẫn riêng biệt với nhau, nhưng cấu hình lại giúp cho chúng liên quan với nhau. Thiết kế này giúp đơn giản hóa việc cấu hình NSX-T trên VMware vSphere hơn rất nhiều.
 
+:::info
+
 N-VDS là một V-Switch Software của NSX-T Manager xuống các Node
 
+:::
+
+:::info
+
 N-VDS built-on-top VDS chỉ hoạt động nếu NSX-T là 3.0 và vSphere VDS là 7.0 trở lên
+
+:::
 
 ## Segments (logical switch)
 
 Một Segments được tạo tương đương với việc tạo PortGroup trên vCenter, nhưng Segments ở NSX-T không chỉ tạo ra Port, chúng tạo ra Logical Switch.
 
-![image](https://user-images.githubusercontent.com/17109300/123466735-e46ff100-d619-11eb-9da3-fb80f88f5d10.png)
+![image](./images/nsxt-segment-ls-with-vds.png)
 
 Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đều thông suốt với nhau, gói tin thuần túy luôn là Layer 2 và được truyền thẳng tới VM -> VDS -> VM như sau.
 
@@ -208,13 +223,13 @@ Với việc sử dụng VDS trên vCenter, các PortGroup cùng VLAN sẽ đề
 
 Trên NSX thì N-VDS sẽ tạo ra logical switch, trước đây NSX-V gọi tên là Logical Switch, nhưng NSX-T gọi nó là Segments, có lẽ việc này để tránh bị hiểu nhầm là sao đã có N-VDS là Switch rồi thì tại sao lại có thêm một lớp Switch nữa ? Thực ra đây không phải là Switch ảo nằm trong N-VDS, nó là một cấu hình được phân tách gọi là Domain giống như các thiết bị mạng khác. Từ bây giờ ta sẽ gọi nó là Segments, tuy nằm trong cùng một Switch là V-VDS và thậm chí có thể cùng Transport Zone, nhưng giữa các Segments là độc lập với nhau. Mỗi một Segments được tạo ra sẽ được tự động gán một VNI (Network ID) khác nhau, do đó có thể tách được luồng traffic riêng biệt giữa các VM giống như VLAN PortGroup trên VDS, tuy nhiên trong Segments của NSX-T, ta còn có thể cấu hình các chức năng của Layer 3 trên Segments này. Tóm lại thì N-VDS thực chất là V-Switch Layer 3 và Segments là một Domain mang cấu hình riêng biệt được Apply các chức năng của cả Layer 2 và Layer  3 từ N-VDS.
 
-![image](https://user-images.githubusercontent.com/17109300/123544291-c40c7780-d77c-11eb-9695-e02803d845dd.png)
+![image](./images/nsxt-segment-demo.png)
 
 Segments mang theo nhiều tính năng của Layer 3 nên cũng bảo mật hơn, gói tin vừa giao tiếp được ở Layer 2 nhờ vào việc mỗi Segments có một VNI riêng biệt, trong trường hợp VM có cùng Segments thì chúng vẫn có thể được Apply các Rule ở Layer 3.
 
 Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, chúng có thể giao tiếp với nhau khi nằm cùng một Segment, nhưng nếu muốn đặt một Firewall rule ở giữa các VM cùng một Segments (NSX-T PortGroup), thậm chí các VM này cùng nằm trên một ESXI node, rule vẫn sẽ được áp dụng cho 2 VM này, rule này có thể là Rule ở Layer 2, Rule ở Layer 3 theo IP, Rule ở Layer 7 theo giao thức ứng dụng. Các rule này thường là Stateful nên khá dễ dàng thiết lập và cài đặt.
 
-![image](https://user-images.githubusercontent.com/17109300/123466755-ea65d200-d619-11eb-95be-37a33e74f5c7.png)
+![image](./images/nsxt-dfw.png)
 
 - Bài viết gốc: https://blogs.vmware.com/networkvirtualization/2016/06/micro-segmentation-defined-nsx-securing-anywhere.html/
 
@@ -222,11 +237,11 @@ Ví dụ cho use-case của thiết kế này đó là khi 2 VM cùng Segments, 
 
 Khi tất cả những Policy ở trên đã khởi tạo và định nghĩa ra. Các Node sẽ phải được apply vào. NSX-T hỗ trợ ESXI Node và thậm chí là cả các hệ thống ảo hóa khác như KVM hoặc một node chạy Linux OS như CentOS, Ubuntu. Tuy nhiên ta sẽ chỉ nói về hai Transport Node của VMware chính đó là
 
-###### vSphere ESXi Node
+### vSphere ESXi Node
 
 Ở phần N-VDS thì ESXi Node có thể cấu hình VDS và N-VDS built-on-top VDS. Một ESXi Node có N-VDS có nghĩa là nó đã trở thành một Transport Node và có thể nhận các chức năng, cấu hình của NSX-T. ESXi Node là Transport Node thì sẽ gọi là `Host Transport Node`
 
-###### NSX-T Edge Node
+### NSX-T Edge Node
 
 Trong đó Edge Node đóng vai trò gần giống như một Router Layer 3-7 cấp cao, Edge Node cũng đóng vai trò làm Gateway cho traffic giữa các Cluster hoặc traffic đi ra ngoài. Edge Node có thể deploy dưới dạng máy ảo với 4 sizing như sau
 
@@ -246,7 +261,7 @@ Bao gồm Service Router (SR) và Distributed Routing (DR). Router này hoạt �
 
 ## Service Router (SR) và Distributed Routing (DR)
 
-###### Distributed Routing (DR)
+### Distributed Routing (DR)
 
 DR sẽ được khởi tạo và chạy trên tất cả các Transport Node, đúng như tên gọi của nó, Routing giữa các VM khi đi qua Gateway mà trong cùng các Node trong Cluster, nó sẽ route đến tất cả các Node, trong trường hợp ta có 2 VM ở 2 Segments khác nhau, có thể hiểu như 2 vùng mạng khác nhau thì luồng của chúng đi như sau
 
@@ -260,7 +275,7 @@ DR sẽ được khởi tạo và chạy trên tất cả các Transport Node, �
 |--------------------------------------------------------------------------------------------------------
 ```
 
-###### Service Router (SR)
+### Service Router (SR)
 
 Chịu trách nhiệm thực hiện các nhiệm vụ sau
 
@@ -273,7 +288,7 @@ Chịu trách nhiệm thực hiện các nhiệm vụ sau
 
 SR hoạt động trong Edge Node khi Edge Node link tới Tier-0 gateway. Chủ yếu thực hiện các chức năng mạng dạng statefull như trên
 
-![image](https://user-images.githubusercontent.com/17109300/123466775-f5206700-d619-11eb-98b4-f94676ebae54.png)
+![image](./images/nsxt-sr-topo.png)
 
 Hình trên mô tả về SR, sử dụng NAT ra ngoài Internet qua Edge Node. Edge Node ở hình trên được gắn Uplink nối ra ngoài WAN Internet, trong ví dụ này khi đi ra ngoài Internet ta sẽ phải NAT, mà mỗi lần NAT ra IP Public từ IP Private thì đi ra từ đường nào sẽ phải đi vào bằng đường đó. Vậy Service Router là một use-case như vây.
 
@@ -300,7 +315,7 @@ Tiếp đến là từ Web-LS đi ra bên ngoài. Chính là cái Physical Route
 |-------------------------------------------------------------------------------------------------
 ```
 
-![image](https://user-images.githubusercontent.com/17109300/123466821-fce00b80-d619-11eb-9b18-1ab4d45a7125.png)
+![image](./images/nsxt-dr-to-sr.png)
 
 > Lưu ý, phần này chỉ mô tả về Logical Router ở bên trong khi gói tin chạy trong một Gateway, không phải là giữa T0 và T1 Gateway
 
@@ -308,7 +323,7 @@ Tiếp đến là từ Web-LS đi ra bên ngoài. Chính là cái Physical Route
 
 Sử dụng để bridge từ hệ thống mạng vật lý hoặc bên ngoài hạ tầng NSX-T trực tiếp qua Layer 2. Use case đó là bridge hạ tầng ngoài và hạ tầng bên trong khi chúng cùng dải mạng. Xem ví dụ bên hình dưới .
 
-![image](https://user-images.githubusercontent.com/17109300/123466837-02d5ec80-d61a-11eb-8a01-515fa27c2c18.png)
+![image](./images/nsxt-edge-bridge.png)
 
 Tính năng này sử dụng trong Use-case khi hệ thống mạng cùng sử dụng cả mô hình VLAN cũ truyền thống kết hợp với NSX. Ví dụ có 6 VM chạy ứng dụng ở hệ thống mạng X, tiếp đó ta chạy ảo hóa và đưa được 3 VM sang ảo hóa, sau đó cho 3 VM này đưa vào NSX-T để chạy Network của NSX. Tuy nhiên kết nối của nhóm 3 VM ở hạ tầng cũ và nhóm 3 VM ở NSX không thể thay đổi cấu hình bên trong máy ảo vì một lý do nào đó, nên kết nối của chúng vẫn là kết nối cũ, ví dụ từ App kết nối sang Database cùng dải mạng cũ, không thể thay đổi thay đổi cấu hình này, phải giữ nguyên. Vậy ta sẽ dùng Bridge từ Edge (vì Edge Node mới có Uplink ra ngoài được), sau đó bridge uplink đó sang hệ thống mạng VLAN cũ, vậy là Edge Node đóng vai trò là thiết bị Bridge, 3 VM bên trong NSX có thể là bất cứ Overlay Segment nào, nhưng đi qua Bridge của Edge Node, gói tin sẽ được truyền qua Layer 2 qua Edge Node và tới được hệ thống mạng VLAN cũ.
 
@@ -318,4 +333,4 @@ Tính năng này sử dụng trong Use-case khi hệ thống mạng cùng sử d
 
 ## Flow Diagram
 
-![image](https://user-images.githubusercontent.com/17109300/123466860-0bc6be00-d61a-11eb-8f4b-77f30d823f94.png)
+![image](./images/nsxt-config-flow.png)
