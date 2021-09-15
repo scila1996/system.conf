@@ -2,11 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://scila1996.github.io/system.conf/blog</id>
     <title>System.conf Blog</title>
-    <updated>2021-08-26T00:00:00.000Z</updated>
+    <updated>2021-09-15T14:21:59.961Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://scila1996.github.io/system.conf/blog"/>
     <subtitle>System.conf Blog</subtitle>
     <icon>https://scila1996.github.io/system.conf/https://github.com/kubernetes/community/raw/master/icons/png/control_plane_components/labeled/api-128.png</icon>
+    <entry>
+        <title type="html"><![CDATA[SDN with VMware NSX-T]]></title>
+        <id>sdn-nsx-t-introduction</id>
+        <link href="https://scila1996.github.io/system.conf/blog/sdn-nsx-t-introduction"/>
+        <updated>2021-09-15T14:21:59.961Z</updated>
+        <summary type="html"><![CDATA[East-West traffic và North-South traffic]]></summary>
+        <author>
+            <name>Nguyen Trung</name>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>welcome</id>

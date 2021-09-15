@@ -4,9 +4,16 @@
         <title>System.conf Blog</title>
         <link>https://scila1996.github.io/system.conf/blog</link>
         <description>System.conf Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 15 Sep 2021 14:21:59 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[SDN with VMware NSX-T]]></title>
+            <link>https://scila1996.github.io/system.conf/blog/sdn-nsx-t-introduction</link>
+            <guid>sdn-nsx-t-introduction</guid>
+            <pubDate>Wed, 15 Sep 2021 14:21:59 GMT</pubDate>
+            <description><![CDATA[East-West traffic và North-South traffic]]></description>
+        </item>
         <item>
             <title><![CDATA[Welcome]]></title>
             <link>https://scila1996.github.io/system.conf/blog/welcome</link>
