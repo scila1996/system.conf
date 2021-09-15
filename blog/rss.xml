@@ -4,43 +4,15 @@
         <title>System.conf Blog</title>
         <link>https://scila1996.github.io/system.conf/blog</link>
         <description>System.conf Blog</description>
-        <lastBuildDate>Wed, 15 Sep 2021 14:21:59 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 15 Sep 2021 19:01:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
-            <title><![CDATA[SDN with VMware NSX-T]]></title>
+            <title><![CDATA[Tổng quan về SDN và VMware NSX-T]]></title>
             <link>https://scila1996.github.io/system.conf/blog/sdn-nsx-t-introduction</link>
             <guid>sdn-nsx-t-introduction</guid>
-            <pubDate>Wed, 15 Sep 2021 14:21:59 GMT</pubDate>
+            <pubDate>Wed, 15 Sep 2021 19:01:06 GMT</pubDate>
             <description><![CDATA[East-West traffic và North-South traffic]]></description>
-        </item>
-        <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://scila1996.github.io/system.conf/blog/welcome</link>
-            <guid>welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-        </item>
-        <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://scila1996.github.io/system.conf/blog/mdx-blog-post</link>
-            <guid>mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://scila1996.github.io/system.conf/blog/long-blog-post</link>
-            <guid>long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://scila1996.github.io/system.conf/blog/first-blog-post</link>
-            <guid>first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></description>
         </item>
     </channel>
 </rss>
