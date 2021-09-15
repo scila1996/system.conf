@@ -57,7 +57,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://scila1996.github.io/system.conf/',
+            href: 'https://github.com/scila1996/system.conf',
             label: 'GitHub',
             position: 'right',
           },
