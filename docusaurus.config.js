@@ -66,7 +66,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       footer: {
         style: 'dark',
         links: [],
-        copyright: `This page are built with Docusaurus.`,
+        copyright: `This page is powered by Docusaurus`,
       },
       prism: {
         theme: lightCodeTheme,
