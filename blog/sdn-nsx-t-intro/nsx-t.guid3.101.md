@@ -261,7 +261,7 @@ Bao gồm Service Router (SR) và Distributed Routing (DR). Router này hoạt �
 
 ## Service Router (SR) và Distributed Routing (DR)
 
-### Distributed Routing (DR)
+### Distributed Routing
 
 DR sẽ được khởi tạo và chạy trên tất cả các Transport Node, đúng như tên gọi của nó, Routing giữa các VM khi đi qua Gateway mà trong cùng các Node trong Cluster, nó sẽ route đến tất cả các Node, trong trường hợp ta có 2 VM ở 2 Segments khác nhau, có thể hiểu như 2 vùng mạng khác nhau thì luồng của chúng đi như sau
 
@@ -275,7 +275,7 @@ DR sẽ được khởi tạo và chạy trên tất cả các Transport Node, �
 |--------------------------------------------------------------------------------------------------------
 ```
 
-### Service Router (SR)
+### Service Router
 
 Chịu trách nhiệm thực hiện các nhiệm vụ sau
 
