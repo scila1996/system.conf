@@ -329,8 +329,8 @@ Tính năng này sử dụng trong Use-case khi hệ thống mạng cùng sử d
 
 3 VM ở hệ thống mạng VLAN cũ sẽ chỉ giao tiếp được với VM ở nhóm được Bridge trong NSX, mặc dù cùng dải mạng và được Bridge với nhau qua Edge Node nhưng 3 VM ở ngoài kia không nằm trong Transport Node cũng như không nằm trong Transport Zone nên không thể giao tiếp được với các hệ thống khác trong NSX. Tuy nhiên 3 VM ở trong nếu có Route sang các Segments khác thì chúng vẫn giao tiếp được với nhau, chỉ 3 VM ở ngoài là giao tiếp riêng biệt với 3 bên trong NSX.
 
-# Cấu hình tổng quan
+## Cấu hình tổng quan
 
-## Flow Diagram
+### Flow Diagram
 
 ![image](./images/nsxt-config-flow.png)
